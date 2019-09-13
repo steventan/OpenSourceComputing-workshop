@@ -10,30 +10,32 @@ These tiny PCs allow them to develop software-oriented embedded electronics appl
 #### Goal of workshop:
 To spark interest for development in the open-source community with the use of single-board PCs that allows the freedom to experiment with Linux, Android and Ubuntu to jumpstart development in less than 10mins.
 
-## Why Beaglebone Black over Raspberry Pi?
+### Why Beaglebone Black over Raspberry Pi?
 #### Affordability: 
 -relatively low barrier of entry for beginners
 
-#### Versatility: 
+#### Versatility and Connection I/O: 
 -Beaglebone supports development with Linux, Android and Ubuntu
-
-#### Connection I/O: 
 -92 connection points available making it easier to expand onto future developments
 
-#### Onboard-storage + SD card slot: 
+#### Onboard-storage + support of Analog Inputs:  
 -the ability to boot from either one, not limited to only SD card
+-support reading analog inputs like Arduino.
 
-#### Analog Inputs: 
--Supporting reading analog inputs like Arduino.
+## Let's get started. Shall we?
 
----
-### *To simulate a real-world software development, we have a scenario here which needs your help! :)*
+*To simulate a real-world software development, we have a scenario here which needs your help! :)*
 
 #### Development Scenario: 
 A bank is looking for a dedicated reactive measure to handle on-site emergency events (robbery cases), the emergency response system being built would alert the emergency-response-staff of on-site emergencies for response when the button was pressed by ground staff in a designated way (depending on the situation we want to handle).
 
 #### Background Description: 
-For the emergency response system, a button which connected to a client board, would be placed within the FIT3140 building. The ground staff would be trained to press the button in designated way to alert the response staff. The button has the Internet capabilities to send signals over to the response staff. The response staff would perform certain action, such as activating the premise alarm or lock the premise safes, depends on the signal received. 
+For the emergency response system, a button which connected to a client board, would be placed within the building. The ground staff would be trained to press the button in designated way to alert the emergency-response staff. 
+
+The button has the Internet capabilities to send signals over to the response staff. The response staff would perform certain action, such as activating the premise alarm or lock the premise safes, depends on the signal received. 
+
+The response team can then use the client interface to send commands to the Beaglebone such as sounding the alarm or locking the safe. We have already prepared a simple HTML with CSS `index.html` as your client interface.
+
 
 #### Setting up your BeagleBone Black:
 * 192.168.7.2 >>  BeagleBone
