@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!-- The client code base for the Response Team
+        It consists of 4 buttons, which are button to activate the alarm, button to deactivate the alarm, button to activate the safes and buttton to deactivate the event.
+        -->
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+
+    <style>
+      .body {
+        font-family: "Open Sans", sans-serif;
+      }
+
+      .activateButton {
+        background-color: #4caf50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        width: 400px;
+        font-family: "Open Sans", sans-serif;
+      }
+
+      .activateButton:hover {
+        background-color: #5b9b5d;
+      }
+      .deactivateButton {
+        background-color: red;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        width: 400px;
+        font-family: "Open Sans", sans-serif;
+      }
+
+      .deactivateButton:hover {
+        background-color: #ca4545;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 400px;
+        z-index: 1;
+      }
+
+      .dropdown-content button {
+        padding: 14px 18px;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        background-color: #bbdabc;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .title {
+        font-family: "Open Sans", sans-serif;
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+    </style>
+
+    <title>Response Team</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      // Establish connection with server
+      var socket = io.connect();
+      // Change the text for warningStatus according to the button pressed or not
+      socket.on("warningStatus", function(data) {
+        document.getElementById("warningStatus").innerHTML = data;
+      });
+
+      // The function to send the signal to the server using socket emit when the button is pressed
+      function activateAlarm(input) {
+        socket.emit("led", "activateAlarm", input);
+      }
+
+      function deactivateAlarm() {
+        socket.emit("led", "deactivateAlarm");
+      }
+
+      function activateSafes() {
+        socket.emit("led", "activateSafes");
+      }
+
+      function deactivateEvent() {
+        socket.emit("led", "deactivateEvent");
+      }
+    </script>
+  </head>
+  <div class="title"><h2>Activate Alarm</h2></div>
+  <div class="dropdown">
+    <button class="activateButton">ACTIVATE ALARM DURATION</button>
+    <div class="dropdown-content">
+      <button type="button" onclick="activateAlarm(5);">5-second</button>
+      <button type="button" onclick="activateAlarm(10);">10-second</button>
+      <button type="button" onclick="activateAlarm(30);">30-second</button>
+      <button type="button" onclick="activateAlarm(60);">60-second</button>
+      <button type="button" onclick="activateAlarm(300);">5-minute</button>
+      <button type="button" onclick="activateAlarm(600);">10-minute</button>
+    </div>
+  </div>
+  <br />
+  <br />
+
+  <button type="button" class="deactivateButton" onclick="deactivateAlarm();">
+    DEACTIVATE ALARM
+  </button>
+  <div class="title">
+    <p id="warningStatus">Message from ground staff: All Good!</p>
+  </div>
+  <br />
+  <div class="title"><h2>Activate Safes</h2></div>
+  <button type="button" class="activateButton" onclick="activateSafes();">
+    ON SAFES
+  </button>
+  <div class="title"><h2>Disable Event</h2></div>
+  <button type="button" class="deactivateButton" onclick="deactivateEvent();">
+    DISABLE EVENTS
+  </button>
+</html>
